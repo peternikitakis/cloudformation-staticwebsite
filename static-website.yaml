@@ -1,0 +1,113 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CloudFormation template to create static website 
+Resources: 
+  WebServerSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: My security group to allow access on ports 80 and 22
+      GroupName: MyWebServer-01
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - ipProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 73.147.203.5/32
+      Tags: 
+        - Key: KeyName
+          Value: MyWebServer SG
+        - Tag
+      VpcId: vpc-07cf62d357f99baa6
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: String
+      SubnetId: String
+      SecurityGroupIds: 
+      KeyName: 
+      ImageId: String
+      Tags: 
+        - Key: 
+          Value:
+      UserData: String
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'
+  IAMRole01:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument: Json
+      Description: String
+      ManagedPolicyArns: 
+        - String
+      MaxSessionDuration: Integer
+      Path: String
+      PermissionsBoundary: String
+      Policies: 
+        - Policy
+      RoleName: String
+      Tags: 
+        - Tag
+  S3Bucket01:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccelerateConfiguration: 
+        AccelerateConfiguration
+      AccessControl: String
+      AnalyticsConfigurations: 
+        - AnalyticsConfiguration
+      BucketEncryption: 
+        BucketEncryption
+      BucketName: String
+      CorsConfiguration: 
+        CorsConfiguration
+      IntelligentTieringConfigurations: 
+        - IntelligentTieringConfiguration
+      InventoryConfigurations: 
+        - InventoryConfiguration
+      LifecycleConfiguration: 
+        LifecycleConfiguration
+      LoggingConfiguration: 
+        LoggingConfiguration
+      MetricsConfigurations: 
+        - MetricsConfiguration
+      NotificationConfiguration: 
+        NotificationConfiguration
+      ObjectLockConfiguration: 
+        ObjectLockConfiguration
+      ObjectLockEnabled: Boolean
+      OwnershipControls: 
+        OwnershipControls
+      PublicAccessBlockConfiguration: 
+        PublicAccessBlockConfiguration
+      ReplicationConfiguration: 
+        ReplicationConfiguration
+      Tags: 
+        - Tag
+      VersioningConfiguration: 
+        VersioningConfiguration
+      WebsiteConfiguration: 
+        WebsiteConfiguration
+  CloudFront01:    
+'
