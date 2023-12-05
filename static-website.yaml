@@ -18,7 +18,6 @@ Resources:
       Tags:
         - Key: KeyName
           Value: MyWebServer SG
-        - Tag
       VpcId: vpc-07cf62d357f99baa6
   EC2Instance:
     Type: AWS::EC2::Instance
@@ -41,7 +40,7 @@ Resources:
           cd /var/www/html
           wget https://github.com/peternikitakis/cloudformation-staticwebsite/blob/main/Namari.zip
           unzip main.zip
-          cp -r techmax-main/*/var/www/html
-          rm -rf techmax-main main.zip
+          cp -r Namari/* /var/www/html
+          rm -rf Namari main.zip
           systemctl enable httpd
           systemctl start httpd
