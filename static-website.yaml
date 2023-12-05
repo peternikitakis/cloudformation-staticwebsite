@@ -16,7 +16,7 @@ Resources:
           ToPort: 22
           CidrIp: 172.31.0.0/16
       Tags:
-        - Key: KeyName
+        - Key: Name
           Value: MyWebServer SG
       VpcId: vpc-0a4ccbba02c46da2b
   EC2Instance:
@@ -32,16 +32,15 @@ Resources:
         - Key: cloudformation-key
           Value: MyWebServer
       UserData:
-        Fn::Base64: 
-          !Sub |
-            #!/bin/bash -xe
-            sudo su
-            yum update -y
-            yum install -y httpd 
-            cd /var/www/html
-            wget https://github.com/peternikitakis/cloudformation-staticwebsite/raw/main/Namari.zip
-            unzip Namari.zip
-            cp -r Namari/* /var/www/html
-            rm -rf Namari Namari.zip
-            systemctl enable httpd
-            systemctl start httpd
+        Fn::Base64: !Sub |
+          #!/bin/bash -xe
+          sudo su
+          yum update -y
+          yum install -y httpd
+          cd /var/www/html
+          wget https://github.com/azeezsalu/techmax/archive/refs/heads/main.zip
+          unzip main.zip
+          cp -r techmax-main/* /var/www/html/
+          rm -rf techmax-main main.zip
+          systemctl enable httpd 
+          systemctl start httpd
