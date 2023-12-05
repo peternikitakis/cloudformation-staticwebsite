@@ -30,7 +30,7 @@ Resources:
       KeyName:
       ImageId: ami-0fa1ca9559f1892ec
       Tags:
-        - Key: Name
+        - Key: cloudformation-key
           Value: MyWebServer
       UserData:
         Fn::Base64: !Sub |
