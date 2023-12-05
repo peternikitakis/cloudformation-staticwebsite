@@ -41,7 +41,7 @@ Resources:
           cd /var/www/html
           wget https://github.com/peternikitakis/cloudformation-staticwebsite/blob/main/Namari.zip
           unzip main.zip
-          cp -r techmax-main/* /var/www/html
+          cp -r techmax-main/*/var/www/html
           rm -rf techmax-main main.zip
           systemctl enable httpd
           systemctl start httpd
