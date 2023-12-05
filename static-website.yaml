@@ -39,8 +39,8 @@ Resources:
           yum install -y httpd 
           cd /var/www/html
           wget https://github.com/peternikitakis/cloudformation-staticwebsite/raw/main/Namari.zip
-          unzip main.zip
+          unzip Namari.zip
           cp -r Namari/* /var/www/html
-          rm -rf Namari main.zip
+          rm -rf Namari Namari.zip
           systemctl enable httpd
           systemctl start httpd
