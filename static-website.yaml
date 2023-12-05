@@ -38,7 +38,7 @@ Resources:
           yum update -y
           yum install -y httpd 
           cd /var/www/html
-          wget https://github.com/peternikitakis/cloudformation-staticwebsite/blob/main/Namari.zip
+          wget https://github.com/peternikitakis/cloudformation-staticwebsite/raw/main/Namari.zip
           unzip main.zip
           cp -r Namari/* /var/www/html
           rm -rf Namari main.zip
