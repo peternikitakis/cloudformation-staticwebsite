@@ -26,7 +26,7 @@ Resources:
       SubnetId: subnet-0310c2a1f4cc62675
       SecurityGroupIds:
         - !Ref WebServerSG
-      KeyName:
+      KeyName: cloudformation-key
       ImageId: ami-0fa1ca9559f1892ec
       Tags:
         - Key: cloudformation-key
