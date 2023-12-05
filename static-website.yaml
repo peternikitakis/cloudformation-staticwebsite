@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: CloudFormation template to create static website 
-Resources: 
+Description: CloudFormation template to create static website
+Resources:
   WebServerSG:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -15,7 +15,7 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: 73.147.203.5/32
-      Tags: 
+      Tags:
         - Key: KeyName
           Value: MyWebServer SG
         - Tag
@@ -23,91 +23,25 @@ Resources:
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: String
-      SubnetId: String
-      SecurityGroupIds: 
-      KeyName: 
-      ImageId: String
-      Tags: 
-        - Key: 
-          Value:
-      UserData: String
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'
-  IAMRole01:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument: Json
-      Description: String
-      ManagedPolicyArns: 
-        - String
-      MaxSessionDuration: Integer
-      Path: String
-      PermissionsBoundary: String
-      Policies: 
-        - Policy
-      RoleName: String
-      Tags: 
-        - Tag
-  S3Bucket01:
-    Type: AWS::S3::Bucket
-    Properties:
-      AccelerateConfiguration: 
-        AccelerateConfiguration
-      AccessControl: String
-      AnalyticsConfigurations: 
-        - AnalyticsConfiguration
-      BucketEncryption: 
-        BucketEncryption
-      BucketName: String
-      CorsConfiguration: 
-        CorsConfiguration
-      IntelligentTieringConfigurations: 
-        - IntelligentTieringConfiguration
-      InventoryConfigurations: 
-        - InventoryConfiguration
-      LifecycleConfiguration: 
-        LifecycleConfiguration
-      LoggingConfiguration: 
-        LoggingConfiguration
-      MetricsConfigurations: 
-        - MetricsConfiguration
-      NotificationConfiguration: 
-        NotificationConfiguration
-      ObjectLockConfiguration: 
-        ObjectLockConfiguration
-      ObjectLockEnabled: Boolean
-      OwnershipControls: 
-        OwnershipControls
-      PublicAccessBlockConfiguration: 
-        PublicAccessBlockConfiguration
-      ReplicationConfiguration: 
-        ReplicationConfiguration
-      Tags: 
-        - Tag
-      VersioningConfiguration: 
-        VersioningConfiguration
-      WebsiteConfiguration: 
-        WebsiteConfiguration
-  CloudFront01:    
-'
+      InstanceType: t2.micro
+      SubnetId: subnet-0310c2a1f4cc62675
+      SecurityGroupIds:
+        - !Ref WebServerSG
+      KeyName:
+      ImageId: ami-0fa1ca9559f1892ec
+      Tags:
+        - Key: Name
+          Value: MyWebServer
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash -xe
+          sudo su
+          yum update -y
+          yum install -y httpd 
+          cd /var/www/html
+          wget https://github.com/peternikitakis/cloudformation-staticwebsite/blob/main/Namari.zip
+          unzip main.zip
+          cp -r techmax-main/* /var/www/html
+          rm -rf techmax-main main.zip
+          systemctl enable httpd
+          systemctl start httpd
